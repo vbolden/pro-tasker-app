@@ -70,7 +70,7 @@ userRouter.post("/login", async (req, res) => {
 
         // CREATE TOKEN
         const token = jwt.sign({ data: payload }, secret, { expiresIn: expiration });
-        
+
         delete user.password;
         res.status(200).json({ token, user });
 
@@ -79,3 +79,5 @@ userRouter.post("/login", async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 });
+
+module.exports = userRouter;
