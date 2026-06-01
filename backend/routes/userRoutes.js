@@ -43,3 +43,39 @@ userRouter.post("/register", async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+userRouter.post("/login", async (req, res) => {
+    try {
+        // FIND THE USER
+        const user = await User.findOne({ username: req.body.username });
+
+        // CHECK FOR EXISTING USER
+        if (!user) {
+            return res.status(400).json({ message: "Incorrect username or password." });
+        }
+
+        // CHECK PASSWORD
+        const correctPassword = await user.isCorrectPassword(req.body.password);
+
+        if (!correctPassword) {
+            return res.status(400).json({ message: "Incorrect username or password." });
+        }
+
+        // PAYLOAD
+        const payload = {
+            username: user.username,
+            email: user.email,
+            _id: user._id
+        };
+
+        // CREATE TOKEN
+        const token = jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+        
+        delete user.password;
+        res.status(200).json({ token, user });
+
+    } catch (error) {
+
+        res.status(400).json({ message: error.message });
+    }
+});
