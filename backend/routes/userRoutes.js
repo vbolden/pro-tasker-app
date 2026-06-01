@@ -9,10 +9,10 @@ const expiration = "12h";
 
 userRouter.post("/register", async (req, res) => {
     try {
-        const user = await User.findOne({ username: req.body.username });
+        const username = await User.findOne({ username: req.body.username });
 
         // CHECK FOR EXISTING USERNAME
-        if (user) {
+        if (username) {
             return res.status(400).json({
                 error: "A user with this username already exists."
             });
@@ -23,6 +23,15 @@ userRouter.post("/register", async (req, res) => {
 
         // PAYLOAD
         const payload = {
+            username: newUser.username,
+            email: newUser.email,
+            _id: newUser._id
+        };
+
+        // CREATE TOKEN
+        const token = jwt.sign({ data: payload }, secret, { expiresIn: expiration });
+
+        const user = {
             username: newUser.username,
             email: newUser.email,
             _id: newUser._id
