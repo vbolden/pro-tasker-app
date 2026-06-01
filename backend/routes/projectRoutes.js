@@ -15,7 +15,7 @@ projectRouter.post("/", async (req, res) => {
         });
 
         console.log('Project created successfully.');
-        res.send({ newProject });
+        res.send(newProject);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -35,8 +35,35 @@ projectRouter.get("/", async (req, res) => {
 });
 
 // READ ONE
+projectRouter.get("/:id", async (req, res) => {
+    try {
+        const project = await Project.findById({
+            _id: req.params.id,
+            user: req.user._id
+        });
+
+        res.json(project);
+    } catch (error) {
+        res.status(500).send("Project Not Found.");
+    }
+});
 
 // UPDATE
+projectRouter.put("/:id", async (req, res) => {
+    try {
+        const updatedProject = await Project.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { returnDocument: "after" }
+        );
+
+        res.json(updatedProject);
+    } catch (error) {
+        console.error(error);
+
+        res.status(500).send("Issue with updating the project...")
+    }
+});
 
 // DELETE
 
