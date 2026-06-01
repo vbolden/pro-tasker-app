@@ -1,10 +1,24 @@
 const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema({
-    name: {},
-    description: {},
-    status: {},
-    project: {},
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,
+        required: true,
+        enum: ["To Do", "In Progress", "Complete"]
+    },
+    project: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Project",
+        required: true,
+    },
 });
 
 const Task = mongoose.model("Task", taskSchema);
