@@ -7,6 +7,19 @@ projectRouter.use(XPathExpression.json());
 projectRouter.use(authMiddleware);
 
 // CREATE
+projectRouter.post("/", async (req, res) => {
+    try {
+        const newProject = await Project.create({
+            ...req.body,
+            user: req.user._id,
+        });
+
+        console.log('Project created successfully.');
+        res.send({ newProject });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 // READ ALL
 projectRouter.get("/", async (req, res) => {
@@ -15,7 +28,9 @@ projectRouter.get("/", async (req, res) => {
 
         res.json(projects);
     } catch (error) {
+        console.error(error);
 
+        res.status(500).send(error);
     }
 });
 
