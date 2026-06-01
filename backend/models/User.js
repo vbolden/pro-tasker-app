@@ -1,9 +1,20 @@
 const mongoose = require('mongoose');
+const { StringDecoder } = require('node:string_decoder');
 
-const userSchema = mongoose.Schema({
-    email: {},
-    username: {},
-    password: {},
+const userSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
 });
 
 const User = mongoose.model("User", userSchema);
