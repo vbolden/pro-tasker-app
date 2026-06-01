@@ -2,30 +2,27 @@ const jwt = require('jsonwebtoken');
 const secret = process.env.JWT_SECRET;
 
 function authMiddleware(req, res, next) {
-    let token = req.body.token || req.query.token || req.headers.authorization;
-
-    if (req.headers.authorization) {
-        token = token.split(' ').pop().trim();
-    }
-
-    if (!token) {
-        return res.status(401).json({
-            error: "No token provided"
-        });
-    }
-
     try {
-        const data = jwt.verify(token, secret, { maxAge: '2h' });
+        let token = req.headers.authorization;
+
+        if (!token) {
+            return res.status(403).json({
+                error: "No token provided"
+            });
+        }
+
+        token = token.split(' ').pop().trim();
+
+        const { data } = jwt.verify(token, secret, { maxAge: '2h' });
+
         req.user = data;
 
+        next();
+
     } catch (error) {
-        return res.status(401).json({
-            error: "Invalid token"
-        });
+        console.log(error.message);
+        res.status(400).json({ message: error.message });
     }
-
-    next();
-
 }
 
 module.exports = authMiddleware;
