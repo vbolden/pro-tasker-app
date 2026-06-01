@@ -80,4 +80,12 @@ userRouter.post("/login", async (req, res) => {
     }
 });
 
+// VERIFY USER TOKEN
+userRouter.use(authMiddleware);
+
+// SEND BACK USER DETAILS AFTER VERIFICATION
+userRouter.get("/", (req, res) => {
+    res.status(200).json(req.user);
+});
+
 module.exports = userRouter;
