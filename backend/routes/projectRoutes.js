@@ -61,10 +61,21 @@ projectRouter.put("/:id", async (req, res) => {
     } catch (error) {
         console.error(error);
 
-        res.status(500).send("Issue with updating the project...")
+        res.status(500).send("Issue with updating the project...");
     }
 });
 
 // DELETE
+projectRouter.delete("/:id", async (req, res) => {
+    try {
+        const deleted = await Project.findByIdAndDelete(req.params.id);
+        
+        res.json({ message: "Project deleted successfully." });
+    } catch (error) {
+        console.error(error);
+        
+        res.status(500).json("Issue deleting the project...");
+    }
+});
 
 module.exports = projectRouter;
