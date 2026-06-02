@@ -1,7 +1,7 @@
 const userRouter = require('express').Router();
 const jwt = require('jsonwebtoken');
 
-const authMiddleware = require("../utils/auth.js");
+const { authMiddleware } = require("../utils/auth.js");
 
 const User = require('../models/User.js');
 const secret = process.env.JWT_SECRET;

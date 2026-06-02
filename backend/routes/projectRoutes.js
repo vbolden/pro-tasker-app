@@ -1,9 +1,8 @@
 const projectRouter = require('express').Router();
 const Project = require("../models/Project.js");
-const authMiddleware = require("../utils/auth.js");
+const { authMiddleware } = require("../utils/auth.js");
 
 // MIDDLEWARE
-projectRouter.use(XPathExpression.json());
 projectRouter.use(authMiddleware);
 
 // CREATE
@@ -69,11 +68,11 @@ projectRouter.put("/:id", async (req, res) => {
 projectRouter.delete("/:id", async (req, res) => {
     try {
         const deleted = await Project.findByIdAndDelete(req.params.id);
-        
+
         res.json({ message: "Project deleted successfully." });
     } catch (error) {
         console.error(error);
-        
+
         res.status(500).json("Issue deleting the project...");
     }
 });
