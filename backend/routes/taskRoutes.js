@@ -67,7 +67,7 @@ taskRouter.delete("/:projectId/tasks/:taskId", projectAuth, async (req, res) => 
             project: req.params.projectId
         });
 
-        if (!updatedTask) {
+        if (!deleted) {
             return res.status(404).json({
                 message: "Task not found."
             });
