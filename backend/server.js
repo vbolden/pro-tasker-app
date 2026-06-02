@@ -5,13 +5,26 @@ const PORT = process.env.PORT || 3003;
 
 const connectDB = require('./config/db.js');
 
+const userRouter = require("./routes/userRoutes.js");
+const projectRouter = require("./routes/projectRoutes.js");
+const taskRouter = require("./routes/taskRoutes.js");
+
 // DB CONNECTION
 connectDB();
 
+// MIDDLEWARE
+app.use(express.json());
+
+// ROUTES
 app.get("/test", (req, res) => {
     res.send("Test route");
 });
 
+app.use("/api/users", userRouter);
+app.use("/api/projects", projectRouter);
+app.use("/api/projects", taskRouter);
+
+// PORT
 app.listen(PORT, () => {
     console.log(`Server is running on PORT: ${PORT}`);
 });
