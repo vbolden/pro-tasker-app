@@ -43,3 +43,38 @@
     text-decoration: none;
     color: inherit;
 }
+
+.page-container {
+    display: flex;
+    gap: 3rem;
+}
+
+header {
+    width: 85%;
+    padding: 3rem;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-right {
+    display: flex;
+    gap: 1rem;
+}
+
+.header-right input {
+    padding: 3px 20px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#notifications {
+    background: transparent;
+    border: none;
+    height: 34px;
+    width: 34px;
+}
