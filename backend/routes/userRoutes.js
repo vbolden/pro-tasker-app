@@ -9,17 +9,17 @@ const expiration = "12h";
 
 userRouter.post("/register", async (req, res) => {
     try {
-        const username = await User.findOne({ username: req.body.username });
+        const existingUser = await User.findOne({ username: req.body.username });
 
         // CHECK FOR EXISTING USERNAME
-        if (username) {
+        if (existingUser) {
             return res.status(400).json({
                 error: "A user with this username already exists."
             });
         }
 
         // CREATE NEW USER
-        const newUser = await User.create(...req, body);
+        const newUser = await User.create(req.body);
 
         // PAYLOAD
         const payload = {
