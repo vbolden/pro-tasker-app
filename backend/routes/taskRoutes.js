@@ -1,32 +1,18 @@
 const taskRouter = require('express').Router();
 
 const Task = require("../models/Task.js");
-const Project = require("../models/Project.js");
-const authMiddleware = require("../utils/auth.js");
+const { authMiddleware, projectAuth } = require("../utils/auth.js");
 
 // MIDDLEWARE
 taskRouter.use(authMiddleware);
 
 // CREATE
-taskRouter.post("/:projectId/tasks", async (req, res) => {
+taskRouter.post("/:projectId/tasks", projectAuth, async (req, res) => {
     try {
-        // FIND PROJECT BY ID
-        const project = await Project.findOne({
-            _id: req.params.projectId,
-            user: req.user._id
-        });
-
-        // CHECK IF OWNED BY USER
-        if (!project) {
-            return res.status(403).json({
-                message: "Unauthorized or project not found."
-            });
-        }
-
         // CREATE TASK
         const task = await Task.create({
             ...req.body,
-            project: req.params.projectId,
+            project: req.project._id,
         });
 
         res.status(201).json(task);
@@ -36,19 +22,8 @@ taskRouter.post("/:projectId/tasks", async (req, res) => {
 });
 
 // READ ALL
-taskRouter.get("/:projectId/tasks", async (req, res) => {
+taskRouter.get("/:projectId/tasks", projectAuth, async (req, res) => {
     try {
-        const project = await Project.findOne({
-            _id: req.params.projectId,
-            user: req.user._id
-        });
-
-        if (!project) {
-            return res.status(403).json({
-                message: "Unauthorized or project not found."
-            });
-        }
-
         const tasks = await Task.find({
             project: req.params.projectId,
         });
@@ -61,56 +36,46 @@ taskRouter.get("/:projectId/tasks", async (req, res) => {
 });
 
 // UPDATE 
-taskRouter.put("/:projectId/tasks/:taskId", async (req, res) => {
+taskRouter.put("/:projectId/tasks/:taskId", projectAuth, async (req, res) => {
     try {
+        const updatedTask = await Task.findOneAndUpdate(
+            {
+                _id: req.params.taskId,
+                project: req.params.projectId
+            },
+            req.body,
+            { new: true },
+        );
 
-        const project = await Project.findOne({
-            _id: req.params.projectId,
-            user: req.user._id
-        });
-
-        if (!project) {
-            return res.status(403).json({
-                message: "Unauthorized or project not found."
+        if (!updatedTask) {
+            return res.status(404).json({
+                message: "Task not found."
             });
         }
 
-        const updatedTask = await Task.findByIdAndUpdate(
-            {
-                _id: req.params.taskId,
-            },
-            req.body,
-        );
-
         res.json(updatedTask);
     } catch (error) {
-        res.status(500).send("There was an issue updating the task...");
+        res.status(500).json({ message: error.message });
     }
 });
 
 // DELETE
-taskRouter.delete("/:projectId/tasks/:taskId", async (req, res) => {
+taskRouter.delete("/:projectId/tasks/:taskId", projectAuth, async (req, res) => {
     try {
-
-        const project = await Project.findOne({
-            _id: req.params.projectId,
-            user: req.user._id
-        });
-
-        if (!project) {
-            return res.status(403).json({
-                message: "Unauthorized or project not found."
-            });
-        }
-
-        const deleted = await Task.findByIdAndDelete({
+        const deleted = await Task.findOneAndDelete({
             _id: req.params.taskId,
             project: req.params.projectId
         });
 
+        if (!updatedTask) {
+            return res.status(404).json({
+                message: "Task not found."
+            });
+        }
+
         res.status(200).json({ message: "Task deleted successfully." });
     } catch (error) {
-        res.status(500).send("There was an issue deleting the task...");
+        res.status(500).json({ message: error.message });
     }
 });
 
