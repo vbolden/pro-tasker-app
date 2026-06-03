@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 function Auth() {
+    const [activeTab, setActiveTab] = useState('signup')
+
     return (
         <div className="auth-container">
             <aside className="auth-left">
@@ -10,16 +14,17 @@ function Auth() {
                 <div className="form">
 
                     <ul className="tab-group">
-                        <li className="tab tab-active">
-                            <a href="#signup">Sign Up</a>
+                        <li className={`tab ${activeTab === 'signup' ? "tab-active" : ""}`}>
+                            <a href="#signup" onClick={() => setActiveTab("signup")}>Sign Up</a>
                         </li>
-                        <li className="tab">
-                            <a href="#login">Log In</a>
+                        <li className={`tab ${activeTab === 'login' ? "tab-active" : ""}`}>
+                            <a href="#login" onClick={() => setActiveTab("login")}>Log In</a>
                         </li>
                     </ul>
 
                     <div className="tab-content">
-                        <div id="signup">
+                        {activeTab === "signup" && (
+                            <div id="signup">
                             <h1>Sign Up for Free</h1>
 
                             <form action="/" method="post">
@@ -36,8 +41,9 @@ function Auth() {
                                 </div>
                             </form>
                         </div>
+                    )}
 
-                        <div id="login">
+                        {activeTab === "login" && (<div id="login">
                             <h1>Welcome Back</h1>
 
                             <form action="/" method="post">
@@ -47,7 +53,7 @@ function Auth() {
                                 <input type="submit" value="Log In" className="button" />
                             </form>
 
-                        </div>
+                        </div>)}
 
                     </div>
                 </div>
