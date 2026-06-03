@@ -32,7 +32,7 @@ function Auth() {
                                     <input type="text" placeholder="Username" required />
                                     <input type="password" placeholder="Password" required />
                                     <input type="password" placeholder="Confirm Password" required />
-                                    <input type="submit" value="Register" />
+                                    <input type="submit" value="Register" className="button" />
                                 </div>
                             </form>
                         </div>
@@ -44,7 +44,7 @@ function Auth() {
                                 <input type="text" placeholder="Username" />
                                 <input type="password" placeholder="Password" />
                                 <p className="forgot"><a href="#">Forgot Password?</a></p>
-                                <input type="submit" value="Log In" />
+                                <input type="submit" value="Log In" className="button" />
                             </form>
 
                         </div>

@@ -195,7 +195,8 @@ header {
 
 .form {
     padding: 40px;
-    max-width: 400px;
+    width: 400px;
+    height: 500px;
     box-shadow: 0 4px 10px 4px #D5CFE1;
     border-radius: 6px;
 }
@@ -216,7 +217,7 @@ li a {
     display: block;
     text-decoration: none;
     padding: 15px;
-    background-color: rgba(211, 211, 211, .25);
+    background-color: #B7B6C1;
     color: inherit;
     font-size: 18px;
     float: left;
@@ -227,16 +228,12 @@ li a {
 }
 
 li a:hover {
-    background-color: #534AB7;
-    color: white;
+    filter: brightness(1.12);
 }
 
 .tab-active a {
     background-color: #464655;
-}
-
-#login {
-  display:none;
+    color: whitesmoke;
 }
 
 h1 {
@@ -262,7 +259,8 @@ h1 {
 }
 
 .top-row input,
-.bottom-row input {
+.bottom-row input,
+#login input {
     width: 100%;
     padding: 5px;
     border: none;
@@ -277,4 +275,30 @@ h1 {
 .top-row input {
     flex: 1;
     margin-bottom: 1rem;
+}
+
+input.button {
+    background-color: #464655;
+    color: whitesmoke;
+}
+
+#login {
+  display: none;
+  width: 100%;
+}
+
+#login form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.forgot {
+    font-size: 10px;
+    text-align: right;
+}
+
+#login .button {
+    background-color: #464655;
+    color: whitesmoke;
 }
