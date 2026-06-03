@@ -1,7 +1,7 @@
 function Dashboard () {
     return (
-        <div className="main-wrapper">
-            <div className="main-left">
+        <div className="dash-wrapper">
+            <div className="dash-left">
                 <div className="schedule">
                     <p>Upcoming Schedule</p>
                 </div>
@@ -12,7 +12,7 @@ function Dashboard () {
                     <p>Recent Tasks</p>
                 </div>
             </div>
-            <div className="main-right"></div>
+            <div className="dash-right"></div>
         </div>
     )
 }
