@@ -6,7 +6,9 @@ function Header () {
                 <div className="header-right">
                     <button id="notifications">🔔</button>
                     <input type="text" placeholder="Search" />
-                    <div className="circle"></div>
+                    <a href="#">
+                        <div className="circle"></div>
+                    </a>
                 </div>
             </div>
         </header>
