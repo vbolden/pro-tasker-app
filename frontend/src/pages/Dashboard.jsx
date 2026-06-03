@@ -6,7 +6,7 @@ function Dashboard () {
                     <p>Upcoming Schedule</p>
                 </div>
                 <div className="projects">
-                    <p>Projects</p>
+                    <p>Recent Projects</p>
                 </div>
                 <div className="tasks">
                     <p>Recent Tasks</p>
