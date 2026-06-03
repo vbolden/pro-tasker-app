@@ -14,8 +14,8 @@ function Sidebar() {
             <hr />
             <div className="navbar">
                 <ul>
-                    <li><Link to="/">Dashboard</Link></li>
-                    <li><Link to="/projects">All Projects</Link></li>
+                    <li><Link to="/dashboard">Dashboard</Link></li>
+                    <li><Link to="projects">All Projects</Link></li>
                     <li><a href="#">My Tasks</a></li>
                     <li><a href="#">Schedule</a></li>
                     <li><a href="#">Messages</a></li>
