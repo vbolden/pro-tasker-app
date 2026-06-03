@@ -213,7 +213,7 @@ header {
     clear: both;
 }
 
-li a {
+.tab-group li a {
     display: block;
     text-decoration: none;
     padding: 15px;
@@ -227,11 +227,11 @@ li a {
     transition: 0.5s ease;
 }
 
-li a:hover {
+.tab-group li a:hover {
     filter: brightness(1.12);
 }
 
-.tab-active a {
+.tab-group .tab-active a {
     background-color: #464655;
     color: whitesmoke;
 }
@@ -283,7 +283,6 @@ input.button {
 }
 
 #login {
-  display: none;
   width: 100%;
 }
 
