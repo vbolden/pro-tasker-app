@@ -1,7 +1,10 @@
 function Auth() {
     return (
         <div className="auth-container">
-            <aside className="auth-left"></aside>
+            <aside className="auth-left">
+                <h1>Organize your work.</h1>
+                <h2>Own your day.</h2>
+            </aside>
             <div className="auth-right">
 
                 <div className="form">
@@ -32,20 +35,20 @@ function Auth() {
                                     <input type="submit" value="Register" />
                                 </div>
                             </form>
+                        </div>
 
-                            <div id="login">
-                                <h1>Welcome Back</h1>
+                        <div id="login">
+                            <h1>Welcome Back</h1>
 
-                                <form action="/" method="post">
-                                    <input type="text" placeholder="Username" />
-                                    <input type="password" placeholder="Password" />
-                                    <p className="forgot"><a href="#">Forgot Password?</a></p>
-                                    <input type="submit" value="Log In" />
-                                </form>
-
-                            </div>
+                            <form action="/" method="post">
+                                <input type="text" placeholder="Username" />
+                                <input type="password" placeholder="Password" />
+                                <p className="forgot"><a href="#">Forgot Password?</a></p>
+                                <input type="submit" value="Log In" />
+                            </form>
 
                         </div>
+
                     </div>
                 </div>
 
