@@ -190,6 +190,10 @@ input.button {
     background-color: #d5cfe14d;
 }
 
+.card-body:hover {
+    transform: scale(1.02);
+}
+
 .project-btns {
     display: flex;
     gap: 5px;
