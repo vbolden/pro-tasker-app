@@ -1,23 +1,31 @@
-import { FaTrash } from 'react-icons/fa';
-import { FaEdit } from 'react-icons/fa';
+import { FaTrash, FaEdit } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 function ProjectCard({ project, onEdit, onDelete }) {
+    const navigate = useNavigate();
+
     return (
-        <div className="card-body">
+        <div className="card-body" onClick={() => navigate(`/dashboard/projects/${project._id}`)}>
             <h3>{project.title}</h3>
             <p>{project.description}</p>
 
             <div className="project-btns">
                 <button
                     id="edit"
-                    onClick={() => onEdit(project)}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onEdit(project);
+                    }}
                 >
                     Edit <FaEdit />
                 </button>
 
                 <button
                     id="delete"
-                    onClick={() => onDelete(project._id)}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onDelete(project._id)
+                    }}
                 >
                     Delete <FaTrash />
                 </button>
