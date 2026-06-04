@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 3003;
@@ -14,6 +15,9 @@ connectDB();
 
 // MIDDLEWARE
 app.use(express.json());
+app.use(cors({
+    origin: process.env.CORS_ORIGIN
+}))
 
 // ROUTES
 app.get("/test", (req, res) => {
