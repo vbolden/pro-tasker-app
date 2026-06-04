@@ -151,6 +151,12 @@ input.button {
 }
 
 /* PROJECTS */
+.projects-container {
+    height: 100vh;
+    width: 100vw;
+    padding: 1rem;
+}
+
 .projects-top {
     display: flex;
     align-items: center;
@@ -181,6 +187,7 @@ input.button {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    background-color: #d5cfe14d;
 }
 
 .project-btns {
@@ -199,4 +206,85 @@ input.button {
 .project-btns button:hover {
     transform: translateY(-3px);
     cursor: pointer;
+}
+
+/* PROJECT MODAL */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+}
+
+.modal {
+    width: min(500px, 90%);
+    background: whitesmoke;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modal h2 {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.modal-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cancel-btn,
+.submit-btn {
+    padding: 0.85rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.cancel-btn {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+.submit-btn {
+    border: none;
+    background-color: rgb(148, 210, 127);
+    color: white;
+}
+
+.cancel-btn:hover,
+.submit-btn:hover {
+    transform: translateY(-2px);
 }
