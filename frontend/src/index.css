@@ -358,6 +358,8 @@ input.button {
     cursor: pointer;
     transition: 0.2s ease;
     border: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
 }
 
 .task-row:hover {
@@ -374,6 +376,36 @@ input.button {
 
 .status {
     color: rgb(144, 143, 143);
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     justify-self: flex-end;
+}
+
+.to-do {
+    background-color: #ede9fe;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.in-progress {
+    background: #fef3c7;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.done {
+    background: rgba(230, 229, 229, 0.74);
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.delete-task {
+    margin-left: auto;
+    margin-right: 5px;
+    background: transparent;
+    border: none;
+    color: #464655;
+}
+
+.delete-task:hover {
+    transform: scale(1.3);
 }
