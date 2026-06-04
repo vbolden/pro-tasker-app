@@ -37,7 +37,7 @@ userRouter.post("/register", async (req, res) => {
             _id: newUser._id
         };
 
-        res.status(201).json({ token, newUser });
+        res.status(201).json({ token, user });
 
     } catch (error) {
         res.status(400).json({ error: error.message });
