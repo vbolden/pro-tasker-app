@@ -292,3 +292,88 @@ input.button {
 .submit-btn:hover {
     transform: translateY(-2px);
 }
+
+/* PROJECT DETAILS */
+.details-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1rem;
+}
+
+/* .back-btn {
+    margin-bottom: 2rem;
+    padding: 3px 15px;
+} */
+
+.page-header h2 {
+    font-size: 1.6rem;
+}
+
+.page-header p {
+    margin-top: 2rem;
+}
+
+.page-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-task {
+    background: #464655;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.add-task:hover,
+.back-btn:hover {
+    opacity: 0.9;
+}
+
+/* TASK SECTION */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.task-row {
+    background-color: white;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    border: 1px solid #e5e7eb;
+}
+
+.task-row:hover {
+    transform: translateX(4px);
+}
+
+.task-row h4 {
+    margin-bottom: 0.25rem;
+}
+
+.task-row p {
+    margin: 0.5rem 0;
+}
+
+.status {
+    color: rgb(144, 143, 143);
+    font-size: 0.9rem;
+    justify-self: flex-end;
+}
