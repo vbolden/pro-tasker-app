@@ -22,42 +22,48 @@ function ProjectModal({ project, onClose }) {
         <div className="modal-overlay">
             <div className="modal">
                 <h2>
-                    {project
-                        ? 'Edit Project'
-                        : 'Create Project'}
+                    {project ? 'Edit Project' : 'Create Project'}
                 </h2>
 
                 <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Project Name"
-                        value={title}
-                        onChange={(e) =>
-                            setTitle(e.target.value)
-                        }
-                    />
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            placeholder="Project Name"
+                            value={title}
+                            onChange={(e) =>
+                                setTitle(e.target.value)
+                            }
+                        />
+                    </div>
 
-                    <textarea 
-                        placeholder="Description" 
-                        value={description}
-                        onChange={(e) => 
-                            setDescription(e.target.value)
-                        }
-                    ></textarea>
+                    <div className="form-group">
+                        <textarea
+                            placeholder="Description"
+                            value={description}
+                            onChange={(e) =>
+                                setDescription(e.target.value)
+                            }
+                        />
+                    </div>
 
                     <div className="modal-btns">
                         <button
-                        type="button" 
-                        onClick={onClose}
+                            className="cancel-btn"
+                            type="button"
+                            onClick={onClose}
                         >
                             Cancel
                         </button>
 
-                        <button type="submit">
-                            {project 
-                            ? "Save Changes"
-                            : "Create Project"
-                        }
+                        <button
+                            type="submit"
+                            className="submit-btn"
+                        >
+                            {project
+                                ? "Save Changes"
+                                : "Create Project"
+                            }
                         </button>
                     </div>
                 </form>
