@@ -19,8 +19,8 @@ function ProjectModal({ project, onClose }) {
     };
 
     return (
-        <div className="modal-overlay">
-            <div className="modal">
+        <div className="modal-overlay" onClick={onClose}>
+            <div className="modal" onClick={(e) => e.stopPropagation()}>
                 <h2>
                     {project ? 'Edit Project' : 'Create Project'}
                 </h2>
