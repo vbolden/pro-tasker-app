@@ -128,6 +128,12 @@ h1 {
 input.button {
     background-color: #464655;
     color: whitesmoke;
+    margin-top: 15px;
+}
+
+input.button:hover {
+    cursor: pointer;
+    opacity: 0.9;
 }
 
 #login {
