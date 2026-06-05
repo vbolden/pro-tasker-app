@@ -21,7 +21,7 @@ function Auth() {
         e.preventDefault();
 
         try {
-            const res = await API.post("/users/register", signupData);
+            const res = await API.post("/api/users/register", signupData);
             localStorage.setItem("token", res.data.token);
             navigate("/dashboard");
         } catch (error) {
@@ -33,7 +33,7 @@ function Auth() {
         e.preventDefault();
 
         try {
-            const res = await API.post("/users/login", loginData);
+            const res = await API.post("/api/users/login", loginData);
 
             localStorage.setItem("token", res.data.token);
 
