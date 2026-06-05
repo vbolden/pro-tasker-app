@@ -20,8 +20,8 @@ function ProjectDetails() {
                 // console.log("Fetching tasks...");
 
                 const [projectRes, tasksRes] = await Promise.all([
-                    API.get(`/projects/${projectId}`),
-                    API.get(`/projects/${projectId}/tasks`)
+                    API.get(`/api/projects/${projectId}`),
+                    API.get(`/api/projects/${projectId}/tasks`)
                 ]);
 
                 setProject(projectRes.data);
@@ -39,7 +39,7 @@ function ProjectDetails() {
             if (selectedTask) {
                 // UPDATE
                 const res = await API.put(
-                    `/projects/${projectId}/tasks/${selectedTask._id}`,
+                    `/api/projects/${projectId}/tasks/${selectedTask._id}`,
                     taskData
                 );
 
@@ -53,7 +53,7 @@ function ProjectDetails() {
             } else {
                 // CREATE
                 const res = await API.post(
-                    `/projects/${projectId}/tasks`,
+                    `/api/projects/${projectId}/tasks`,
                     taskData
                 );
 
@@ -75,7 +75,7 @@ function ProjectDetails() {
         if (!confirmed) return;
 
         try {
-            await API.delete(`/projects/${projectId}/tasks/${taskId}`);
+            await API.delete(`/api/projects/${projectId}/tasks/${taskId}`);
 
             setTasks((prev) =>
                 prev.filter((t) => t._id !== taskId)
