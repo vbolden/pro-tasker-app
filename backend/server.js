@@ -16,7 +16,8 @@ connectDB();
 // MIDDLEWARE
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: "https://pro-tasker-app-1.onrender.com/",
+    credentials: true
 }))
 
 // ROUTES
