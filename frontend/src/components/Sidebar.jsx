@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-function Sidebar({menuOpen}) {
+function Sidebar({ menuOpen }) {
     return (
         <aside className={`sidebar ${menuOpen ? "active" : ""}`}>
             <h2>ProTasker</h2>
@@ -14,8 +14,20 @@ function Sidebar({menuOpen}) {
             <hr />
             <div className="navbar">
                 <ul>
-                    <li><Link to="/dashboard">Dashboard</Link></li>
-                    <li><Link to="projects">All Projects</Link></li>
+                    <li>
+                        <NavLink to="/dashboard" end className={({ isActive }) =>
+                            isActive ? "active-link" : ""
+                        }>
+                            Dashboard
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/projects" className={({ isActive }) =>
+                            isActive ? "active-link" : ""
+                        }>
+                            All Projects
+                        </NavLink>
+                    </li>
                     <li><a href="#">My Tasks</a></li>
                     <li><a href="#">Schedule</a></li>
                     <li><a href="#">Messages</a></li>

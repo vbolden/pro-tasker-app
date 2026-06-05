@@ -60,14 +60,20 @@ body {
 
 .navbar ul li a {
     display: block;
-    padding: 12px 16px;
-    color: inherit;
+    padding: 10px 16px;
+    border-radius: 10px;
+    transition: 0.2s ease;
     text-decoration: none;
+    color: inherit;
 }
 
 .navbar ul li a:hover {
-    background: #f4f4f4;
-    transform: scale(1.1);
+    background: #B7B6C1;
+}
+
+.active-link {
+    background: #B7B6C1;
+    font-weight: 600;
 }
 
 /* HEADER */
@@ -138,9 +144,9 @@ header {
 #project-stats,
 #tasks-done,
 #stats {
-    background: #eddfef96;
+    background: #B7B6C1;
     border-radius: 24px;
-    padding: 1.5rem;
+    padding: 0.5rem 1.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
@@ -156,28 +162,42 @@ header {
 }
 
 .schedule {
-    min-height: 380px;
-}
-
-.projects {
     min-height: 240px;
 }
 
+.projects {
+    min-height: 220px;
+}
+
 .tasks {
-    min-height: 180px;
+    min-height: 160px;
 }
 
 /* CALENDAR */
-.calendar .react-calendar {
-    background-color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 1rem;
-    width: 300px;
+.calendar {
+    width: 220px;
 }
 
-.calendar .react-calendar__navigation {
-    margin-bottom: 1rem;
+.calendar .react-calendar {
+    font-size: 12px;
+    border-radius: 12px;
+    border: none;
+}
+
+.calendar .react-calendar__tile {
+    padding: 6px 0;
+}
+
+.calendar .react-calendar__tile--now {
+    background: #dfe6e9;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.calendar .react-calendar__tile--active {
+    background: #6c5ce7 !important;
+    color: white !important;
+    border-radius: 8px;
 }
 
 .schedule-content {
@@ -206,7 +226,7 @@ header {
     width: 80%;
     min-height: 200px;
     border-radius: 10px;
-    background-color: #eddfef96;
+    background-color: #B7B6C1;
     display: flex;
     flex-direction: column;
     justify-content: center;
