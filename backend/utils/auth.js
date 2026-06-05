@@ -14,7 +14,7 @@ function authMiddleware(req, res, next) {
 
         token = token.split(' ').pop().trim();
 
-        const { data } = jwt.verify(token, secret, { maxAge: '2h' });
+        const { data } = jwt.verify(token, secret, { maxAge: '24h' });
 
         req.user = data;
 
