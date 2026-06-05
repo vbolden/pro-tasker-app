@@ -35,7 +35,7 @@ function Dashboard() {
                 <div className="dash-right">
                     <div id="project-stats">
                         <p>Project Count</p>
-                        <span className='big-number'>6</span>
+                        <span className='big-number'>0</span>
                     </div>
                     <div id="tasks-done">
                         <p>Tasks Done</p>
