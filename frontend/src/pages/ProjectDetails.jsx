@@ -4,6 +4,7 @@ import TaskModal from "../components/TaskModal";
 import { FaTrash } from "react-icons/fa";
 import API from "../api/axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ProjectDetails() {
     const [project, setProject] = useState(null);
@@ -11,6 +12,7 @@ function ProjectDetails() {
     const [selectedTask, setSelectedTask] = useState(null);
     const [showTaskModal, setShowTaskModal] = useState(false);
     const { id: projectId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,7 +25,7 @@ function ProjectDetails() {
                 ]);
 
                 setProject(projectRes.data);
-                setTasks(tasksRes.data)
+                setTasks(tasksRes.data);
             } catch (error) {
                 console.error(error);
             }
@@ -86,7 +88,7 @@ function ProjectDetails() {
     return (
         <div className="details-container">
             <div className="page-header">
-                <button className="back-btn"> <IoArrowBack /> Back</button>
+                <button className="back-btn" onClick={() => navigate("/dashboard/projects")} > <IoArrowBack /> Back</button>
                 <div className="project-detail">
                     <h2>{project?.title}</h2>
                     <p>{project?.description}</p>
