@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-function Sidebar() {
+function Sidebar({menuOpen}) {
     return (
-        <aside className="sidebar">
+        <aside className={`sidebar ${menuOpen ? "active" : ""}`}>
             <h2>ProTasker</h2>
             <div className="sidebar-header">
                 <div className="circle"></div>
