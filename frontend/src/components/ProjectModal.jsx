@@ -1,20 +1,15 @@
 import { useState } from "react";
 
-function ProjectModal({ project, onClose }) {
+function ProjectModal({ project, onClose, onSave }) {
     const [title, setTitle] = useState(project?.title || '');
     const [description, setDescription] = useState(
         project?.description || ''
     );
 
     const handleSubmit = (e) => {
-        e.preventdefault();
+        e.preventDefault();
 
-        if (project) {
-            console.log('Update Project');
-        } else {
-            console.log('Create Project');
-        }
-
+        onSave({ title, description });
         onClose();
     };
 
@@ -28,6 +23,7 @@ function ProjectModal({ project, onClose }) {
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <input
+                            name="title"
                             type="text"
                             placeholder="Project Name"
                             value={title}
@@ -39,6 +35,7 @@ function ProjectModal({ project, onClose }) {
 
                     <div className="form-group">
                         <textarea
+                            name="description"
                             placeholder="Description"
                             value={description}
                             onChange={(e) =>
