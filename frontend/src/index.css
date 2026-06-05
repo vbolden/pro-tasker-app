@@ -23,7 +23,7 @@
     background-color: rgba(70, 70, 85, 0.7);
 }
 
-.auth-left > * {
+.auth-left>* {
     position: relative;
     z-index: 1;
 }
@@ -137,7 +137,7 @@ input.button:hover {
 }
 
 #login {
-  width: 100%;
+    width: 100%;
 }
 
 #login form {
@@ -186,7 +186,7 @@ input.button:hover {
 /* PROJECT CARD */
 .card-body {
     width: 350px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     height: 250px;
     padding: 1.5rem 1.5rem 0.2rem;
@@ -315,10 +315,18 @@ input.button:hover {
     padding-bottom: 1rem;
 }
 
-/* .back-btn {
-    margin-bottom: 2rem;
-    padding: 3px 15px;
-} */
+.back-btn {
+    background: transparent;
+    border: none;
+    margin-bottom: 3rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.back-btn:hover {
+    transform: scale(1.07);
+    text-decoration: underline;
+}
 
 .page-header h2 {
     font-size: 1.6rem;
