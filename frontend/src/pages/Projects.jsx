@@ -11,7 +11,7 @@ function Projects() {
     useEffect(() => {
         const fetchProjects = async () => {
             try {
-                const res = await API.get("/projects");
+                const res = await API.get("/api/projects");
 
                 setProjects(res.data);
             } catch (error) {
@@ -36,7 +36,7 @@ function Projects() {
         if (!confirmed) return;
 
         try {
-            await API.delete(`/projects/${id}`);
+            await API.delete(`/api/projects/${id}`);
 
             setProjects((prev) =>
                 prev.filter((project) => project._id !== id));
@@ -50,7 +50,7 @@ function Projects() {
             if (selectedProject) {
                 // UPDATE
                 const res = await API.put(
-                    `/projects/${selectedProject._id}`,
+                    `/api/projects/${selectedProject._id}`,
                     projectData
                 );
 
@@ -62,7 +62,7 @@ function Projects() {
             } else {
                 console.log("Creating project:", projectData)
                 // CREATE
-                const res = await API.post("/projects", projectData);
+                const res = await API.post("/api/projects", projectData);
                 console.log("Create response:", res.data)
                 setProjects((prev) => [...prev, res.data]);
             }
