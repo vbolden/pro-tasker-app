@@ -3,28 +3,60 @@ import 'react-calendar/dist/Calendar.css';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useEffect, useState } from 'react';
 import API from '../api/axios';
+import { Link } from 'react-router-dom';
 
 function Dashboard() {
     const [projects, setProjects] = useState([]);
     const [projectCount, setProjectCount] = useState(0);
+    const [tasks, setTasks] = useState([]);
+
+    const [taskStats, setTaskStats] = useState({
+        total: 0,
+        done: 0
+    });
 
     useEffect(() => {
-        fetchProjects();
+        fetchDashboardData();
     }, []);
 
-    const fetchProjects = async () => {
+    const fetchDashboardData = async () => {
         try {
-            const res = await API.get("/api/projects");
+            const projectRes = await API.get("/api/projects");
 
-            // KEEP 2 MOST RECENT
-            setProjects(res.data.slice(-2));
+            const allProjects = projectRes.data;
 
-            setProjectCount(res.data.length)
+            setProjectCount(allProjects.length);
+
+            const recentProjects = [...allProjects]
+                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                .slice(0, 2);
+
+            setProjects(recentProjects);
+
+            const taskRequests = projectRes.data.map(project =>
+                API.get(`/api/projects/${project._id}/tasks`)
+            );
+
+            const taskResponses = await Promise.all(taskRequests);
+
+            const allTasks = taskResponses.flatMap(
+                response => response.data
+            );
+
+            const total = allTasks.length;
+
+            const done = allTasks.filter(
+                task => task.status === "Done"
+            ).length;
+
+            setTaskStats({ total, done });
+            setTasks(allTasks);
         } catch (error) {
             console.error(error);
-            
         }
     };
+
+    const percentage = taskStats.total === 0 ? 0 : Math.round((taskStats.done / taskStats.total) * 100);
 
     return (
         <div className='dashboard'>
@@ -58,7 +90,7 @@ function Dashboard() {
                                     <div key={project._id} className="project-card">
                                         <h4>{project.title}</h4>
                                         <p>{project.description}</p>
-                                        <a href={`/dashboard/projects/${project._id}`}>View Project</a>
+                                        <Link to={`/dashboard/projects/${project._id}`}>View Project</Link>
                                     </div>
                                 ))
                             )}
@@ -66,6 +98,19 @@ function Dashboard() {
                     </div>
                     <div className="tasks">
                         <p>Recent Tasks</p>
+                        <div className="task-wrapper">
+                            {tasks.length === 0 ? (
+                                <span>No Tasks Yet</span>
+                            ) : (
+                                tasks.slice(0, 5).map((task) => (
+                                    <div key={task._id} className="task-card">
+                                        <h5>{task.title}</h5>
+                                        <p>{task.description}</p>
+                                        <Link to={`/dashboard/projects/${task.project}`}>View</Link>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className="dash-right">
@@ -75,15 +120,15 @@ function Dashboard() {
                     </div>
                     <div id="tasks-done">
                         <p>Tasks Done</p>
-                        <span>10/20</span>
+                        <span>{taskStats.done}/{taskStats.total}</span>
                         <div className='progress'>
-                            <CircularProgressbar value={50} />
+                            <CircularProgressbar value={percentage} text={`${percentage}%`} />
                         </div>
                     </div>
                     <div id="stats">
                         <p>On Track</p>
                         <div className='progress'>
-                            <CircularProgressbar value={90} />
+                            <CircularProgressbar value={0} />
                         </div>
                     </div>
                 </div>
