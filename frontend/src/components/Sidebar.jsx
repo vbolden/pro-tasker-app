@@ -32,10 +32,10 @@ function Sidebar({ menuOpen }) {
                             <CiGrid41 /> All Projects
                         </NavLink>
                     </li>
-                    <li><a href="#"> <IoIosCheckboxOutline /> My Tasks</a></li>
-                    <li><a href="#"> <CiCalendar /> Schedule</a></li>
-                    <li><a href="#"> <AiOutlineMessage /> Messages</a></li>
-                    <li><a href="#"> <IoSettingsOutline /> Settings</a></li>
+                    <li><NavLink to="/dashboard/mytasks"> <IoIosCheckboxOutline /> My Tasks</NavLink></li>
+                    <li><NavLink to="/dashboard/schedule"> <CiCalendar /> Schedule</NavLink></li>
+                    <li><NavLink to="/dashboard/messages"> <AiOutlineMessage /> Messages</NavLink></li>
+                    <li><NavLink to="/dashboard/settings"> <IoSettingsOutline /> Settings</NavLink></li>
                 </ul>
             </div>
         </aside>
