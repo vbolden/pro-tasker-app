@@ -1,4 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { CiGrid31, CiGrid41, CiCalendar } from 'react-icons/ci';
+import { IoIosCheckboxOutline } from "react-icons/io";
+import { AiOutlineMessage } from "react-icons/ai";
+import { IoSettingsOutline } from "react-icons/io5";
 
 function Sidebar({ menuOpen }) {
     return (
@@ -18,20 +22,20 @@ function Sidebar({ menuOpen }) {
                         <NavLink to="/dashboard" end className={({ isActive }) =>
                             isActive ? "active-link" : ""
                         }>
-                            Dashboard
+                            <CiGrid31 /> Dashboard
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/projects" className={({ isActive }) =>
                             isActive ? "active-link" : ""
                         }>
-                            All Projects
+                            <CiGrid41 /> All Projects
                         </NavLink>
                     </li>
-                    <li><a href="#">My Tasks</a></li>
-                    <li><a href="#">Schedule</a></li>
-                    <li><a href="#">Messages</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="#"> <IoIosCheckboxOutline /> My Tasks</a></li>
+                    <li><a href="#"> <CiCalendar /> Schedule</a></li>
+                    <li><a href="#"> <AiOutlineMessage /> Messages</a></li>
+                    <li><a href="#"> <IoSettingsOutline /> Settings</a></li>
                 </ul>
             </div>
         </aside>
