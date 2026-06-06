@@ -3,6 +3,7 @@ const cors = require('cors')
 const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT || 3003;
+const allowed = [ "http://localhost:5173", "https://pro-tasker-app-1.onrender.com"]
 
 const connectDB = require('./config/db.js');
 
@@ -16,7 +17,7 @@ connectDB();
 // MIDDLEWARE
 app.use(express.json());
 app.use(cors({
-    origin: "https://pro-tasker-app-1.onrender.com",
+    origin: allowed,
     credentials: true
 }))
 
