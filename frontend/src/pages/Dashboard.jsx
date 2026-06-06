@@ -1,8 +1,31 @@
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import { useEffect, useState } from 'react';
+import API from '../api/axios';
 
 function Dashboard() {
+    const [projects, setProjects] = useState([]);
+    const [projectCount, setProjectCount] = useState(0);
+
+    useEffect(() => {
+        fetchProjects();
+    }, []);
+
+    const fetchProjects = async () => {
+        try {
+            const res = await API.get("/api/projects");
+
+            // KEEP 2 MOST RECENT
+            setProjects(res.data.slice(-2));
+
+            setProjectCount(res.data.length)
+        } catch (error) {
+            console.error(error);
+            
+        }
+    };
+
     return (
         <div className='dashboard'>
             <div className="dash-wrapper">
@@ -25,8 +48,21 @@ function Dashboard() {
                             </div>
                         </div>
                     </div>
-                    <div className="projects">
+                    <div className='projects'>
                         <p>Recent Projects</p>
+                        <div className="projects-wrapper">
+                            {projects.length === 0 ? (
+                                <span>No Projects Yet</span>
+                            ) : (
+                                projects.map((project) => (
+                                    <div key={project._id} className="project-card">
+                                        <h4>{project.title}</h4>
+                                        <p>{project.description}</p>
+                                        <a href={`/dashboard/projects/${project._id}`}>View Project</a>
+                                    </div>
+                                ))
+                            )}
+                        </div>
                     </div>
                     <div className="tasks">
                         <p>Recent Tasks</p>
@@ -35,7 +71,7 @@ function Dashboard() {
                 <div className="dash-right">
                     <div id="project-stats">
                         <p>Project Count</p>
-                        <span className='big-number'>0</span>
+                        <span className='big-number'>{projectCount}</span>
                     </div>
                     <div id="tasks-done">
                         <p>Tasks Done</p>
