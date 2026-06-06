@@ -226,6 +226,41 @@ header {
     padding: 1rem;
 }
 
+.projects-wrapper{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1rem;
+    height: 160px;
+    width: 230px;
+}
+
+.project-card h4 {
+    margin-bottom: 1rem;
+}
+
+.project-card p {
+    font-size: 12px;
+}
+
+.project-card a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 10px;
+}
+
+.project-card a:hover {
+    text-decoration: underline;
+    color: #d7c8d8;
+}
+
 /* STATS */
 #project-stats,
 #tasks-done,
