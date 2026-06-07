@@ -37,6 +37,15 @@ function Auth() {
 
             localStorage.setItem("token", res.data.token);
 
+            const safeUser = {
+                _id: res.data.user._id,
+                username: res.data.user.username,
+                email: res.data.user.email
+            };
+
+            localStorage.setItem("user", JSON.stringify(safeUser));
+            // console.log(res.data)
+
             navigate("/dashboard");
         } catch (error) {
             console.error(error);
