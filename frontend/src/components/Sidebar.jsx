@@ -5,13 +5,15 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
 
 function Sidebar({ menuOpen }) {
+    const user = JSON.parse(localStorage.getItem("user"));
+
     return (
         <aside className={`sidebar ${menuOpen ? "active" : ""}`}>
             <h2>ProTasker</h2>
             <div className="sidebar-header">
-                <div className="circle"></div>
+                <div className="circle">{user?.username.charAt(0)}</div>
                 <div className="user-details">
-                    <p>User's Name</p>
+                    <p>{user?.username.toUpperCase()}</p>
                     <span>Product Lead</span>
                 </div>
             </div>
